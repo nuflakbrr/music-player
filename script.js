@@ -12,7 +12,7 @@ const currTime = document.querySelector('#currTime');
 const durTime = document.querySelector('#durTime');
 
 // Song titles
-const songs = ['Brigade - Grace', 'Brigade - Punk Love Story', 'Fur - If You Know That Im Lonely (Feel Koplo Remix)', 'Berharap Tak Berpisah (Feel Koplo Remix)', 'Oasis - Dont Look Back In Anger (Koplo)', 'Pamungkas - Kenangan Manis (Feel Koplo)'];
+const songs = ['Brigade 07 - Grace', 'Brigade 07 - Punk Love Story', 'Fur - If You Know That Im Lonely (Feel Koplo Remix)', 'Feel Koplo - Minimix 01', 'Oasis - Dont Look Back In Anger (Koplo)', 'Pamungkas - Kenangan Manis (Feel Koplo)', 'Brigade 07 - Mengejar Mimpi', 'First Love x Orange Remix', 'Kevin Gates - Push It (Live Performance)', 'Luthfi Aulia feat. Hanggini - Sampaikan Sayangku Untuk Dia', 'NDX A.K.A - Apa Kabar Mantan', 'Pamungkas - To The Bone', 'TTM Akustik Ft. PutriAndien - Cerito Loro'];
 
 // Keep track of song
 let songIndex = 2;

@@ -1,18 +1,35 @@
-const musicContainer = document.getElementById('music-container');
-const playBtn = document.getElementById('play');
-const prevBtn = document.getElementById('prev');
-const nextBtn = document.getElementById('next');
+const musicContainer = document.getElementById("music-container");
+const playBtn = document.getElementById("play");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
 
-const audio = document.getElementById('audio');
-const progress = document.getElementById('progress');
-const progressContainer = document.getElementById('progress-container');
-const title = document.getElementById('title');
-const cover = document.getElementById('cover');
-const currTime = document.querySelector('#currTime');
-const durTime = document.querySelector('#durTime');
+const audio = document.getElementById("audio");
+const progress = document.getElementById("progress");
+const progressContainer = document.getElementById("progress-container");
+const title = document.getElementById("title");
+const cover = document.getElementById("cover");
+const currTime = document.querySelector("#currTime");
+const durTime = document.querySelector("#durTime");
 
 // Song titles
-const songs = ['Brigade 07 - Grace', 'Brigade 07 - Punk Love Story', 'Fur - If You Know That Im Lonely (Feel Koplo Remix)', 'Feel Koplo - Minimix 01', 'Oasis - Dont Look Back In Anger (Koplo)', 'Pamungkas - Kenangan Manis (Feel Koplo)', 'Brigade 07 - Mengejar Mimpi', 'Nikka Costa - First Love', 'Luthfi Aulia feat. Hanggini - Sampaikan Sayangku Untuk Dia', 'NDX A.K.A - Apa Kabar Mantan', 'Pamungkas - To The Bone', 'TTM Akustik Ft. PutriAndien - Cerito Loro', '애인 만들기 (Making A Lover) - SS501 (Cover by Chris Andrian Yang)', '真夜中のドア (Stay With Me) - 松原みき (Miki Matsubara) (Cover by Chris Andrian Yang)', 'Michela Thea - Top 15 Pop Music'];
+const songs = [
+  "Brigade 07 - Grace",
+  "Brigade 07 - Punk Love Story",
+  "Fur - If You Know That Im Lonely (Feel Koplo Remix)",
+  "Feel Koplo - Minimix 01",
+  "Oasis - Dont Look Back In Anger (Koplo)",
+  "Pamungkas - Kenangan Manis (Feel Koplo)",
+  "Brigade 07 - Mengejar Mimpi",
+  "Nikka Costa - First Love",
+  "Luthfi Aulia feat. Hanggini - Sampaikan Sayangku Untuk Dia",
+  "NDX A.K.A - Apa Kabar Mantan",
+  "Pamungkas - To The Bone",
+  "TTM Akustik Ft. PutriAndien - Cerito Loro",
+  "애인 만들기 (Making A Lover) - SS501 (Cover by Chris Andrian Yang)",
+  "真夜中のドア (Stay With Me) - 松原みき (Miki Matsubara) (Cover by Chris Andrian Yang)",
+  "Michela Thea - Top 15 Pop Music",
+  "Diskoria, Laleilmanino, Eva Celia - C.H.R.I.S.Y.E. (Official Music Video)",
+];
 
 // Keep track of song
 let songIndex = 2;
@@ -29,18 +46,18 @@ function loadSong(song) {
 
 // Play song
 function playSong() {
-  musicContainer.classList.add('play');
-  playBtn.querySelector('i.fas').classList.remove('fa-play');
-  playBtn.querySelector('i.fas').classList.add('fa-pause');
+  musicContainer.classList.add("play");
+  playBtn.querySelector("i.fas").classList.remove("fa-play");
+  playBtn.querySelector("i.fas").classList.add("fa-pause");
 
   audio.play();
 }
 
 // Pause song
 function pauseSong() {
-  musicContainer.classList.remove('play');
-  playBtn.querySelector('i.fas').classList.add('fa-play');
-  playBtn.querySelector('i.fas').classList.remove('fa-pause');
+  musicContainer.classList.remove("play");
+  playBtn.querySelector("i.fas").classList.add("fa-play");
+  playBtn.querySelector("i.fas").classList.remove("fa-pause");
 
   audio.pause();
 }
@@ -88,71 +105,64 @@ function setProgress(e) {
 }
 
 //get duration & currentTime for Time of song
-function DurTime (e) {
-	const {duration,currentTime} = e.srcElement;
-	var sec;
-	var sec_d;
+function DurTime(e) {
+  const { duration, currentTime } = e.srcElement;
+  var sec;
+  var sec_d;
 
-	// define minutes currentTime
-	let min = (currentTime==null)? 0:
-	 Math.floor(currentTime/60);
-	 min = min <10 ? '0'+min:min;
+  // define minutes currentTime
+  let min = currentTime == null ? 0 : Math.floor(currentTime / 60);
+  min = min < 10 ? "0" + min : min;
 
-	// define seconds currentTime
-	function get_sec (x) {
-		if(Math.floor(x) >= 60){
-			
-			for (var i = 1; i<=60; i++){
-				if(Math.floor(x)>=(60*i) && Math.floor(x)<(60*(i+1))) {
-					sec = Math.floor(x) - (60*i);
-					sec = sec <10 ? '0'+sec:sec;
-				}
-			}
-		}else{
-		 	sec = Math.floor(x);
-		 	sec = sec <10 ? '0'+sec:sec;
-		 }
-	} 
+  // define seconds currentTime
+  function get_sec(x) {
+    if (Math.floor(x) >= 60) {
+      for (var i = 1; i <= 60; i++) {
+        if (Math.floor(x) >= 60 * i && Math.floor(x) < 60 * (i + 1)) {
+          sec = Math.floor(x) - 60 * i;
+          sec = sec < 10 ? "0" + sec : sec;
+        }
+      }
+    } else {
+      sec = Math.floor(x);
+      sec = sec < 10 ? "0" + sec : sec;
+    }
+  }
 
-	get_sec (currentTime,sec);
+  get_sec(currentTime, sec);
 
-	// change currentTime DOM
-	currTime.innerHTML = min +':'+ sec;
+  // change currentTime DOM
+  currTime.innerHTML = min + ":" + sec;
 
-	// define minutes duration
-	let min_d = (isNaN(duration) === true)? '0':
-		Math.floor(duration/60);
-	 min_d = min_d <10 ? '0'+min_d:min_d;
+  // define minutes duration
+  let min_d = isNaN(duration) === true ? "0" : Math.floor(duration / 60);
+  min_d = min_d < 10 ? "0" + min_d : min_d;
 
+  function get_sec_d(x) {
+    if (Math.floor(x) >= 60) {
+      for (var i = 1; i <= 60; i++) {
+        if (Math.floor(x) >= 60 * i && Math.floor(x) < 60 * (i + 1)) {
+          sec_d = Math.floor(x) - 60 * i;
+          sec_d = sec_d < 10 ? "0" + sec_d : sec_d;
+        }
+      }
+    } else {
+      sec_d = isNaN(duration) === true ? "0" : Math.floor(x);
+      sec_d = sec_d < 10 ? "0" + sec_d : sec_d;
+    }
+  }
 
-	 function get_sec_d (x) {
-		if(Math.floor(x) >= 60){
-			
-			for (var i = 1; i<=60; i++){
-				if(Math.floor(x)>=(60*i) && Math.floor(x)<(60*(i+1))) {
-					sec_d = Math.floor(x) - (60*i);
-					sec_d = sec_d <10 ? '0'+sec_d:sec_d;
-				}
-			}
-		}else{
-		 	sec_d = (isNaN(duration) === true)? '0':
-		 	Math.floor(x);
-		 	sec_d = sec_d <10 ? '0'+sec_d:sec_d;
-		 }
-	} 
+  // define seconds duration
 
-	// define seconds duration
-	
-	get_sec_d (duration);
+  get_sec_d(duration);
 
-	// change duration DOM
-	durTime.innerHTML = min_d +':'+ sec_d;
-		
-};
+  // change duration DOM
+  durTime.innerHTML = min_d + ":" + sec_d;
+}
 
 // Event listeners
-playBtn.addEventListener('click', () => {
-  const isPlaying = musicContainer.classList.contains('play');
+playBtn.addEventListener("click", () => {
+  const isPlaying = musicContainer.classList.contains("play");
 
   if (isPlaying) {
     pauseSong();
@@ -162,17 +172,17 @@ playBtn.addEventListener('click', () => {
 });
 
 // Change song
-prevBtn.addEventListener('click', prevSong);
-nextBtn.addEventListener('click', nextSong);
+prevBtn.addEventListener("click", prevSong);
+nextBtn.addEventListener("click", nextSong);
 
 // Time/song update
-audio.addEventListener('timeupdate', updateProgress);
+audio.addEventListener("timeupdate", updateProgress);
 
 // Click on progress bar
-progressContainer.addEventListener('click', setProgress);
+progressContainer.addEventListener("click", setProgress);
 
 // Song ends
-audio.addEventListener('ended', nextSong);
+audio.addEventListener("ended", nextSong);
 
 // Time of song
-audio.addEventListener('timeupdate',DurTime);
+audio.addEventListener("timeupdate", DurTime);

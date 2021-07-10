@@ -1,6 +1,6 @@
-# nuflakbrr.github.io
+# nuflakbrr.github.io/music-player
 
-Personal Portfolio Website.
+Music Player Website.
 
 ## Authors
 
